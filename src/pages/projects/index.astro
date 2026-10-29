@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectRow from '../../components/ProjectRow.astro';
+import { projectKinds } from '../../content.config';
+import { getProjects, kindNames } from '../../projects';
+
+const projects = await getProjects();
+
+// One group per kind, in schema order. Kinds with no projects yet are left out.
+const groups = projectKinds
+  .map((kind) => ({
+    kind,
+    name: kindNames[kind].group,
+    projects: projects.filter((project) => project.data.kind === kind),
+  }))
+  .filter((group) => group.projects.length > 0);
+---
+
+<BaseLayout title="All projects" description="Every project by Alejandro Cortes, grouped by kind.">
+  <section class="container intro">
+    <h1>All projects</h1>
+    <p>The full list, grouped by kind. My strongest work is featured on the home page.</p>
+    <nav aria-label="Jump to group">
+      <ul class="jump">
+        {
+          groups.map((group) => (
+            <li>
+              <a href={`#${group.kind}`}>{group.name}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </section>
+
+  <section class="container list">
+    {
+      groups.map((group) => (
+        <div class="group">
+          <h2 id={group.kind}>
+            {group.name}
+            {/* padStart turns 3 into "03", like the mockup. */}
+            <span class="count">{String(group.projects.length).padStart(2, '0')}</span>
+          </h2>
+          <ul>
+            {group.projects.map((project) => (
+              <ProjectRow project={project} />
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </section>
+</BaseLayout>
+
+<style>
+  .intro {
+    padding-top: clamp(32px, 6.5vw, 72px);
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  h1 {
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .intro > p {
+    max-width: 620px;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .jump {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .jump a {
+    min-height: 44px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--outline);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+  }
+
+  .jump a:hover {
+    text-decoration: none;
+    border-color: var(--muted);
+  }
+
+  .list {
+    padding-bottom: 96px;
+  }
+
+  h2 {
+    margin: 56px 0 16px;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .count {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--accent);
+  }
+</style>

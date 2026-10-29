@@ -1,0 +1,268 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Pill from '../../components/Pill.astro';
+import {
+  demoText,
+  formatMonthYear,
+  getProjects,
+  kindNames,
+  projectLabel,
+  type Project,
+} from '../../projects';
+
+// The site is static, so Astro needs the full list of project pages at build time.
+// Each project's id (its file name) becomes the [slug] in the URL.
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const { title, summary, kind, stack, demoUrl, repoUrl, screenshot, date } = project.data;
+const label = projectLabel(project);
+
+// Turns the Markdown body into a component we can place on the page.
+const { Content } = await render(project);
+---
+
+<BaseLayout title={title} description={summary}>
+  <section class="container header">
+    <a href="/projects" class="back">← All projects</a>
+    {label && <p class="eyebrow">{label}</p>}
+    <h1>{title}</h1>
+    <p class="summary">{summary}</p>
+    {
+      (demoUrl || repoUrl) && (
+        <div class="buttons">
+          {demoUrl && (
+            <a href={demoUrl} class="btn btn-primary">
+              {demoText(project)} ↗
+            </a>
+          )}
+          {repoUrl && (
+            <a href={repoUrl} class="btn btn-secondary">
+              Source code ↗
+            </a>
+          )}
+        </div>
+      )
+    }
+  </section>
+
+  <section class="container">
+    {
+      screenshot ? (
+        <img class="shot" src={screenshot} alt={`Screenshot of ${title}`} />
+      ) : (
+        <div class="shot placeholder">[main screenshot]</div>
+      )
+    }
+  </section>
+
+  <section class="container body">
+    <aside class="facts">
+      <dl>
+        <div>
+          <dt>Kind</dt>
+          <dd>{kindNames[kind].single}</dd>
+        </div>
+        <div>
+          <dt>Completed</dt>
+          <dd><time datetime={date.toISOString().slice(0, 10)}>{formatMonthYear(date)}</time></dd>
+        </div>
+        {
+          stack.length > 0 && (
+            <div>
+              <dt>Stack</dt>
+              <dd>
+                <ul class="stack">
+                  {stack.map((item) => (
+                    <li>
+                      <Pill>{item}</Pill>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          )
+        }
+      </dl>
+    </aside>
+
+    <article class="writeup">
+      <Content />
+    </article>
+  </section>
+</BaseLayout>
+
+<style>
+  .header {
+    padding-top: 40px;
+    padding-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .back {
+    align-self: flex-start;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .header .eyebrow {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+  }
+
+  .summary {
+    max-width: 680px;
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .buttons {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .shot {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  /* clamp keeps the placeholder from being 440px tall on a phone. */
+  .placeholder {
+    height: clamp(200px, 40vw, 440px);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .body {
+    padding-top: 64px;
+    padding-bottom: 96px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 48px 64px;
+  }
+
+  /* Side card */
+  .facts {
+    flex: 0 1 280px;
+    min-width: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  dl {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  dl > div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  dt {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  .stack {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Write-up. The Markdown is rendered by <Content />, outside this component's
+     scoped styles, so these rules use :global() to reach its elements. */
+  .writeup {
+    flex: 1 1 420px;
+    min-width: 0;
+    max-width: 720px;
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  .writeup :global(h2) {
+    margin: 48px 0 12px;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+
+  .writeup :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .writeup :global(p + p) {
+    margin-top: 16px;
+  }
+
+  .writeup :global(ul),
+  .writeup :global(ol) {
+    margin: 0;
+    padding-left: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .writeup :global(strong) {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .writeup :global(a) {
+    color: var(--text);
+    text-decoration: underline;
+  }
+
+  .writeup :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+</style>

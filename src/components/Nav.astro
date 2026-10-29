@@ -74,4 +74,20 @@ const links = [
   .nav-link.current {
     color: var(--text);
   }
+
+  /* Phones: wordmark on one row, links on the row below. */
+  @media (max-width: 600px) {
+    nav {
+      padding: 12px 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+
+    /* Each link has 12px side padding for a wider tap area. Pulling the list left by
+       the same amount lines the first link's text up with the wordmark. */
+    ul {
+      margin-left: -12px;
+    }
+  }
 </style>

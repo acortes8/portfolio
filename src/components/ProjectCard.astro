@@ -1,22 +1,14 @@
 ---
-import type { CollectionEntry } from 'astro:content';
 import Pill from './Pill.astro';
+import { demoText, projectLabel, type Project } from '../projects';
 
 interface Props {
-  project: CollectionEntry<'projects'>;
+  project: Project;
 }
 
 const { project } = Astro.props;
-const { title, summary, kind, stack, demoUrl, screenshot } = project.data;
-
-// A site is visited, not demoed.
-const isSite = kind === 'site';
-const demoText = isSite ? 'Visit site' : 'Live demo';
-
-// e.g. "RAILS · LIVE DEMO" or "JEKYLL · STATIC SITE": the first stack item plus a tag.
-// .filter(Boolean) drops the parts that are empty.
-const tag = isSite ? 'Static site' : demoUrl && 'Live demo';
-const label = [stack[0], tag].filter(Boolean).join(' · ');
+const { title, summary, stack, demoUrl, screenshot } = project.data;
+const label = projectLabel(project);
 ---
 
 <article class="card">
@@ -43,7 +35,7 @@ const label = [stack[0], tag].filter(Boolean).join(' · ');
   }
   <div class="links">
     <a href={`/projects/${project.id}`} class="writeup">Read the write-up →</a>
-    {demoUrl && <a href={demoUrl} class="demo">{demoText} ↗</a>}
+    {demoUrl && <a href={demoUrl} class="demo">{demoText(project)} ↗</a>}
   </div>
 </article>
 

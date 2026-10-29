@@ -1,0 +1,59 @@
+---
+import type { Project } from '../projects';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const { title, summary, stack } = project.data;
+---
+
+<li class="row">
+  <h3>{title}</h3>
+  <p class="summary">{summary}</p>
+  <p class="stack">{stack.join(' · ')}</p>
+  <a href={`/projects/${project.id}`} aria-label={`Write-up: ${title}`}>Write-up →</a>
+</li>
+
+<style>
+  .row {
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px 32px;
+  }
+
+  /* The flex values share the row's width roughly 1 : 2 : 1, and wrap on narrow screens. */
+  h3 {
+    flex: 1 1 200px;
+    min-width: 0;
+    font-size: 20px;
+  }
+
+  .summary {
+    flex: 2 1 320px;
+    min-width: 0;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .stack {
+    flex: 1 1 160px;
+    min-width: 0;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  a {
+    flex: 0 0 auto;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+  }
+</style>

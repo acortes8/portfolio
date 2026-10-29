@@ -1,14 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import Pill from '../components/Pill.astro';
+import { getProjects } from '../projects';
 import { site } from '../site';
 
 // Featured projects, newest first, at most 6.
-const featured = (await getCollection('projects', (project) => project.data.featured))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 6);
+const featured = (await getProjects()).filter((project) => project.data.featured).slice(0, 6);
 
 const learning = ['TypeScript', 'C'];
 
@@ -101,7 +99,8 @@ const contactLinks = [
 
   /* Hero */
   .hero {
-    padding-top: 88px;
+    /* 88px on desktop, shrinking to 40px on phones so the hero isn't far below the nav. */
+    padding-top: clamp(40px, 8vw, 88px);
     padding-bottom: 80px;
     display: flex;
     flex-direction: column;
