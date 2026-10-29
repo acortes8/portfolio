@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Page not found</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0E1116}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible{outline:2px solid #E8EAED;outline-offset:3px}
+</style>
+</helmet>
+<div style="box-sizing: border-box; width: 100%; min-height: 760px; background: #0E1116; color: #E8EAED; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column">
+
+<header style="box-sizing: border-box; padding: 0 24px">
+<nav style="max-width: 1120px; margin: 0 auto; padding: 20px 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px">
+<a href="Main.dc.html" style="font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500; color: #E8EAED; padding: 12px 0; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">alejandrocortes.dev</a>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<a href="Projects.dc.html" style="font-size: 15px; color: #A0A8B5; padding: 0 12px; min-height: 44px; display: inline-flex; align-items: center">Projects</a>
+<a href="Main.dc.html" style="font-size: 15px; color: #A0A8B5; padding: 0 12px; min-height: 44px; display: inline-flex; align-items: center">About</a>
+<a href="Main.dc.html" style="font-size: 15px; color: #A0A8B5; padding: 0 12px; min-height: 44px; display: inline-flex; align-items: center">Contact</a>
+</div>
+</nav>
+</header>
+
+<main style="box-sizing: border-box; padding: 0 24px; flex: 1 1 auto; display: flex">
+<section style="max-width: 1120px; width: 100%; margin: 0 auto; padding: 80px 0 96px; display: flex; flex-direction: column; justify-content: center; gap: 24px">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: clamp(64px, 14vw, 160px); font-weight: 500; line-height: 1; letter-spacing: -0.04em; color: {{accent}}">404</p>
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(32px, 5vw, 48px); line-height: 1.1; letter-spacing: -0.02em">This page doesn't exist.</h1>
+<p style="margin: 0; max-width: 520px; font-size: 18px; line-height: 1.55; color: #A0A8B5">The link may be old or mistyped. Head back home or browse the projects.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px">
+<a href="Main.dc.html" style="box-sizing: border-box; min-height: 48px; padding: 0 24px; display: inline-flex; align-items: center; background: {{accent}}; color: #0E1116; font-weight: 600; font-size: 16px; border-radius: 8px">Back to home</a>
+<a href="Projects.dc.html" style="box-sizing: border-box; min-height: 48px; padding: 0 24px; display: inline-flex; align-items: center; border: 1px solid #3A4252; color: #E8EAED; font-size: 16px; border-radius: 8px">All projects</a>
+</div>
+</section>
+</main>
+
+<footer style="box-sizing: border-box; padding: 0 24px; border-top: 1px solid #262C38">
+<div style="max-width: 1120px; margin: 0 auto; padding: 16px 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; font-size: 14px; color: #A0A8B5">
+<span>© 2026 Alejandro Cortes</span>
+<div style="display: flex; flex-wrap: wrap; gap: 0 20px">
+<a href="Main.dc.html" style="min-height: 44px; display: inline-flex; align-items: center; color: #A0A8B5">GitHub</a>
+<a href="Main.dc.html" style="min-height: 44px; display: inline-flex; align-items: center; color: #A0A8B5">LinkedIn</a>
+<a href="Main.dc.html" style="min-height: 44px; display: inline-flex; align-items: center; color: #A0A8B5">Resume</a>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#7DD3A8","options":["#7DD3A8","#8AB4FF","#FFB86B","#F28BB3"]},"$preview":{"width":1280,"height":760}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#7DD3A8' };
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Portfolio landing page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0E1116}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible{outline:2px solid #E8EAED;outline-offset:3px}
+</style>
+</helmet>
+<div style="box-sizing: border-box; width: 100%; background: #0E1116; color: #E8EAED; font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column">
+
+<header style="box-sizing: border-box; padding: 0 24px">
+<nav style="max-width: 1120px; margin: 0 auto; padding: 20px 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px">
+<a href="#top" style="font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500; color: #E8EAED; padding: 12px 0; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">alejandrocortes.dev</a>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 8px">
+<a href="#projects" style="font-size: 15px; color: #A0A8B5; padding: 0 12px; min-height: 44px; display: inline-flex; align-items: center">Projects</a>
+<a href="#about" style="font-size: 15px; color: #A0A8B5; padding: 0 12px; min-height: 44px; display: inline-flex; align-items: center">About</a>
+<a href="#contact" style="font-size: 15px; color: #A0A8B5; padding: 0 12px; min-height: 44px; display: inline-flex; align-items: center">Contact</a>
+</div>
+</nav>
+</header>
+
+<main id="top" style="box-sizing: border-box; padding: 0 24px">
+
+<section style="max-width: 1120px; margin: 0 auto; padding: 88px 0 80px; display: flex; flex-direction: column; gap: 28px">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.04em; color: {{accent}}">SOFTWARE DEVELOPER · RUBY · PYTHON · TYPESCRIPT</p>
+<h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(44px, 8vw, 88px); line-height: 1.02; letter-spacing: -0.02em">Alejandro Cortes</h1>
+<p style="margin: 0; max-width: 620px; font-size: 20px; line-height: 1.55; color: #A0A8B5">[Two or three sentences about what you build and what you care about. Keep it plain and specific.]</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px">
+<a href="#projects" style="box-sizing: border-box; min-height: 48px; padding: 0 24px; display: inline-flex; align-items: center; background: {{accent}}; color: #0E1116; font-weight: 600; font-size: 16px; border-radius: 8px">View projects</a>
+<a href="mailto:hello@alejandrocortes.dev" style="box-sizing: border-box; min-height: 48px; padding: 0 24px; display: inline-flex; align-items: center; border: 1px solid #3A4252; color: #E8EAED; font-family: 'JetBrains Mono', monospace; font-size: 15px; border-radius: 8px">hello@alejandrocortes.dev</a>
+</div>
+</section>
+
+<section id="projects" style="max-width: 1120px; margin: 0 auto; padding: 24px 0 88px; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px">
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 36px; letter-spacing: -0.01em">Projects</h2>
+<a href="Projects.dc.html" style="min-height: 44px; display: inline-flex; align-items: center; font-size: 16px; font-weight: 600; color: #E8EAED">See all projects →</a>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px">
+
+<article style="flex: 1 1 320px; min-width: 0; box-sizing: border-box; background: #161A22; border: 1px solid #262C38; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<div style="height: 168px; box-sizing: border-box; background: #0E1116; border: 1px solid #262C38; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A0A8B5">[screenshot]</div>
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.04em; color: {{accent}}">RAILS · LIVE DEMO</p>
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px">[Rails app 1]</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #A0A8B5">[One sentence on what it does and who it is for.]</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A0A8B5; border: 1px solid #3A4252; border-radius: 999px; padding: 4px 10px">[stack]</span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A0A8B5; border: 1px solid #3A4252; border-radius: 999px; padding: 4px 10px">[stack]</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: auto">
+<a href="#projects" style="min-height: 44px; display: inline-flex; align-items: center; font-weight: 600; font-size: 15px; color: #E8EAED">Read the write-up →</a>
+<a href="#projects" style="min-height: 44px; display: inline-flex; align-items: center; font-size: 15px; color: #A0A8B5">Live demo ↗</a>
+</div>
+</article>
+
+<article style="flex: 1 1 320px; min-width: 0; box-sizing: border-box; background: #161A22; border: 1px solid #262C38; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<div style="height: 168px; box-sizing: border-box; background: #0E1116; border: 1px solid #262C38; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A0A8B5">[screenshot]</div>
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.04em; color: {{accent}}">RAILS · LIVE DEMO</p>
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px">[Rails app 2]</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #A0A8B5">[One sentence on what it does and who it is for.]</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A0A8B5; border: 1px solid #3A4252; border-radius: 999px; padding: 4px 10px">[stack]</span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A0A8B5; border: 1px solid #3A4252; border-radius: 999px; padding: 4px 10px">[stack]</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: auto">
+<a href="#projects" style="min-height: 44px; display: inline-flex; align-items: center; font-weight: 600; font-size: 15px; color: #E8EAED">Read the write-up →</a>
+<a href="#projects" style="min-height: 44px; display: inline-flex; align-items: center; font-size: 15px; color: #A0A8B5">Live demo ↗</a>
+</div>
+</article>
+
+<article style="flex: 1 1 320px; min-width: 0; box-sizing: border-box; background: #161A22; border: 1px solid #262C38; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<div style="height: 168px; box-sizing: border-box; background: #0E1116; border: 1px solid #262C38; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A0A8B5">[screenshot]</div>
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.04em; color: {{accent}}">STATIC SITE</p>
+<h3 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px">[Static site project]</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #A0A8B5">[One sentence on what it does and who it is for.]</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A0A8B5; border: 1px solid #3A4252; border-radius: 999px; padding: 4px 10px">[stack]</span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A0A8B5; border: 1px solid #3A4252; border-radius: 999px; padding: 4px 10px">[stack]</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: auto">
+<a href="#projects" style="min-height: 44px; display: inline-flex; align-items: center; font-weight: 600; font-size: 15px; color: #E8EAED">Read the write-up →</a>
+<a href="#projects" style="min-height: 44px; display: inline-flex; align-items: center; font-size: 15px; color: #A0A8B5">Visit site ↗</a>
+</div>
+</article>
+
+</div>
+</section>
+
+<section id="about" style="max-width: 1120px; margin: 0 auto; padding: 0 0 88px; display: flex; flex-wrap: wrap; gap: 24px 64px">
+<h2 style="margin: 0; flex: 0 1 280px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 36px; letter-spacing: -0.01em">About</h2>
+<div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 16px; max-width: 640px">
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #A0A8B5">[A short paragraph: your background, what you are learning now, and the kind of work you want to do.]</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #A0A8B5">[Optional second paragraph.]</p>
+<div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.04em; color: {{accent}}">CURRENTLY LEARNING</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #E8EAED; border: 1px solid #3A4252; border-radius: 999px; padding: 6px 14px">TypeScript</span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #E8EAED; border: 1px solid #3A4252; border-radius: 999px; padding: 6px 14px">Go</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contact" style="max-width: 1120px; margin: 0 auto; padding: 0 0 96px">
+<div style="box-sizing: border-box; background: #161A22; border: 1px solid #262C38; border-radius: 12px; padding: 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 32px">
+<div style="display: flex; flex-direction: column; gap: 8px; min-width: 0">
+<h2 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 32px; letter-spacing: -0.01em">Get in touch</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #A0A8B5">Questions about a project, or want to work together? Email works best.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="mailto:hello@alejandrocortes.dev" style="box-sizing: border-box; min-height: 48px; padding: 0 24px; display: inline-flex; align-items: center; background: {{accent}}; color: #0E1116; font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 15px; border-radius: 8px">hello@alejandrocortes.dev</a>
+<a href="#contact" style="box-sizing: border-box; min-height: 48px; padding: 0 24px; display: inline-flex; align-items: center; border: 1px solid #3A4252; color: #E8EAED; font-size: 15px; border-radius: 8px">GitHub ↗</a>
+<a href="#contact" style="box-sizing: border-box; min-height: 48px; padding: 0 24px; display: inline-flex; align-items: center; border: 1px solid #3A4252; color: #E8EAED; font-size: 15px; border-radius: 8px">LinkedIn ↗</a>
+<a href="#contact" style="box-sizing: border-box; min-height: 48px; padding: 0 24px; display: inline-flex; align-items: center; border: 1px solid #3A4252; color: #E8EAED; font-size: 15px; border-radius: 8px">Resume ↓</a>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer style="box-sizing: border-box; padding: 0 24px; border-top: 1px solid #262C38">
+<div style="max-width: 1120px; margin: 0 auto; padding: 16px 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; font-size: 14px; color: #A0A8B5">
+<span>© 2026 Alejandro Cortes</span>
+<div style="display: flex; flex-wrap: wrap; gap: 0 20px">
+<a href="#contact" style="min-height: 44px; display: inline-flex; align-items: center; color: #A0A8B5">GitHub</a>
+<a href="#contact" style="min-height: 44px; display: inline-flex; align-items: center; color: #A0A8B5">LinkedIn</a>
+<a href="#contact" style="min-height: 44px; display: inline-flex; align-items: center; color: #A0A8B5">Resume</a>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#7DD3A8","options":["#7DD3A8","#8AB4FF","#FFB86B","#F28BB3"]},"$preview":{"width":1280,"height":2100}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#7DD3A8' };
+}
+}
+</script>
+</body>
+</html>
