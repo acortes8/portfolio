@@ -1,26 +1,245 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Pill from '../components/Pill.astro';
+import { site } from '../site';
 
-// Temporary: proves the projects collection loads. Real sections come in step 3.
-const projects = (await getCollection('projects')).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
-);
+// Featured projects, newest first, at most 6.
+const featured = (await getCollection('projects', (project) => project.data.featured))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 6);
+
+const learning = ['TypeScript', 'C'];
+
+// Links that aren't set in site.ts are skipped, same as the footer.
+const contactLinks = [
+  { href: site.githubUrl, label: 'GitHub ↗' },
+  { href: site.linkedinUrl, label: 'LinkedIn ↗' },
+  { href: site.resumeUrl, label: 'Resume ↓' },
+].filter((link) => link.href !== null);
 ---
 
 <BaseLayout>
-  <section class="container" style="padding-top: 88px; padding-bottom: 88px">
-    <h1 style="font-family: var(--font-heading); margin: 0 0 24px">Collection check</h1>
-    <ul>
-      {
-        projects.map((project) => (
-          <li>
-            <strong>{project.data.title}</strong> ({project.id}, {project.data.kind},{' '}
-            {project.data.date.toISOString().slice(0, 10)}
-            {project.data.featured && ', featured'})
-          </li>
-        ))
-      }
-    </ul>
+  <section class="container hero">
+    <p class="eyebrow hero-eyebrow">Software developer · Ruby · Python · TypeScript</p>
+    <h1>{site.name}</h1>
+    <p class="intro">
+      [Two or three sentences about what you build and what you care about. Keep it plain and
+      specific.]
+    </p>
+    <div class="buttons">
+      <a href="#projects" class="btn btn-primary">View projects</a>
+      <a href={`mailto:${site.email}`} class="btn btn-secondary btn-mono">{site.email}</a>
+    </div>
+  </section>
+
+  <section id="projects" class="container projects">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <a href="/projects" class="see-all">See all projects →</a>
+    </div>
+    <div class="grid">
+      {featured.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+
+  <section id="about" class="container about">
+    <h2>About</h2>
+    <div class="about-body">
+      <p>
+        [A short paragraph: your background, what you are learning now, and the kind of work you
+        want to do.]
+      </p>
+      <p>[Optional second paragraph.]</p>
+      <div class="learning">
+        <span class="eyebrow">Currently learning</span>
+        <ul>
+          {
+            learning.map((item) => (
+              <li>
+                <Pill size="md">{item}</Pill>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="container contact">
+    <div class="contact-box">
+      <div class="contact-text">
+        <h2>Get in touch</h2>
+        <p>Questions about a project, or want to work together? Email works best.</p>
+      </div>
+      <div class="buttons">
+        <a href={`mailto:${site.email}`} class="btn btn-primary btn-mono">{site.email}</a>
+        {
+          contactLinks.map((link) => (
+            <a href={link.href} class="btn btn-secondary">
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
   </section>
 </BaseLayout>
+
+<style>
+  h2 {
+    font-size: 36px;
+    letter-spacing: -0.01em;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* Hero */
+  .hero {
+    padding-top: 88px;
+    padding-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .hero-eyebrow {
+    font-size: 14px;
+  }
+
+  h1 {
+    /* clamp(min, preferred, max): scales with screen width between 44px and 88px. */
+    font-size: clamp(44px, 8vw, 88px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  .intro {
+    max-width: 620px;
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .hero .buttons {
+    margin-top: 8px;
+  }
+
+  /* Projects */
+  .projects {
+    padding-top: 24px;
+    padding-bottom: 88px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px 24px;
+  }
+
+  .see-all {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+  }
+
+  /* auto-fill makes as many 320px+ columns as fit, so the grid drops to one column on phones. */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+    gap: 24px;
+  }
+
+  /* About */
+  .about {
+    padding-bottom: 88px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 64px;
+  }
+
+  .about h2 {
+    flex: 0 1 280px;
+  }
+
+  .about-body {
+    flex: 1 1 360px;
+    min-width: 0;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .about-body > p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .learning {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .learning ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Contact */
+  .contact {
+    padding-bottom: 96px;
+  }
+
+  .contact-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px 32px;
+  }
+
+  .contact-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .contact h2 {
+    font-size: 32px;
+  }
+
+  .contact-text p {
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  @media (max-width: 600px) {
+    .contact-box {
+      padding: 24px;
+    }
+  }
+</style>

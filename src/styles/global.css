@@ -55,6 +55,27 @@ img {
   display: block;
 }
 
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+}
+
+/* Small uppercase accent label, e.g. "CURRENTLY LEARNING" or "RAILS · LIVE DEMO". */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
 /* Centers content at max-width with side gutters. Used by every section. */
 .container {
   width: 100%;
@@ -72,6 +93,9 @@ img {
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
+  /* Lets a long button label (like the email) wrap on very narrow phones instead of overflowing. */
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .btn:hover {
