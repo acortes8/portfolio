@@ -1,14 +1,26 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Temporary: proves the projects collection loads. Real sections come in step 3.
+const projects = (await getCollection('projects')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
 ---
 
 <BaseLayout>
-  <!-- Temporary: just enough to check the shell. Real sections come next. -->
   <section class="container" style="padding-top: 88px; padding-bottom: 88px">
-    <h1 style="font-family: var(--font-heading); margin: 0 0 24px">Shell check</h1>
-    <div style="display: flex; flex-wrap: wrap; gap: 12px">
-      <a href="/projects" class="btn btn-primary">View projects</a>
-      <a href="mailto:hello@alejandrocortes.dev" class="btn btn-secondary btn-mono">hello@alejandrocortes.dev</a>
-    </div>
+    <h1 style="font-family: var(--font-heading); margin: 0 0 24px">Collection check</h1>
+    <ul>
+      {
+        projects.map((project) => (
+          <li>
+            <strong>{project.data.title}</strong> ({project.id}, {project.data.kind},{' '}
+            {project.data.date.toISOString().slice(0, 10)}
+            {project.data.featured && ', featured'})
+          </li>
+        ))
+      }
+    </ul>
   </section>
 </BaseLayout>

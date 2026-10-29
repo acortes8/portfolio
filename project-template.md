@@ -1,7 +1,7 @@
 ---
 title: "[Project name]"
 summary: "[One sentence: what it does and who it is for.]"
-kind: "app"            # app | script | game | school
+kind: "app"            # app | site | script | game | school
 featured: false        # true = shown as a big card on the home page
 stack: ["[Ruby on Rails]", "[PostgreSQL]"]
 demoUrl: ""            # e.g. https://myapp.alejandrocortes.dev (leave empty if none)

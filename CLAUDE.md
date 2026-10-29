@@ -37,7 +37,7 @@ Shared pieces to extract as components: layout, nav, footer, project card, proje
 
 ## Content
 
-Projects are Markdown files in a content collection (`src/content/projects/`). Validate front matter with a schema. Fields are in `project-template.md`: `title`, `summary`, `kind` (app | script | game | school), `featured`, `stack`, `demoUrl`, `repoUrl`, `screenshot`, `date`. Everything on the landing page, list, and project pages should be generated from these files, so adding a project means adding one file.
+Projects are Markdown files in a content collection (`src/content/projects/`). Validate front matter with a schema. Fields are in `project-template.md`: `title`, `summary`, `kind` (app | site | script | game | school), `featured`, `stack`, `demoUrl`, `repoUrl`, `screenshot`, `date`. Everything on the landing page, list, and project pages should be generated from these files, so adding a project means adding one file.
 
 ## Facts
 
