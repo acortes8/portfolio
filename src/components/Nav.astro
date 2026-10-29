@@ -1,0 +1,77 @@
+---
+import { site } from '../site';
+
+// Highlight "Projects" on /projects and on any /projects/[slug] page.
+const path = Astro.url.pathname;
+const onProjects = path === '/projects' || path.startsWith('/projects/');
+
+const links = [
+  { href: '/projects', label: 'Projects', current: onProjects },
+  // About and Contact are sections of the landing page, so these work from any page.
+  { href: '/#about', label: 'About', current: false },
+  { href: '/#contact', label: 'Contact', current: false },
+];
+---
+
+<header class="container">
+  <nav aria-label="Main">
+    <a href="/" class="wordmark">{site.domain}</a>
+    <ul>
+      {
+        links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={['nav-link', { current: link.current }]}
+              aria-current={link.current ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  nav {
+    padding: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 24px;
+  }
+
+  .wordmark {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .nav-link {
+    min-height: 44px;
+    padding: 0 12px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .nav-link.current {
+    color: var(--text);
+  }
+</style>

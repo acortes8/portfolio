@@ -28,7 +28,7 @@ Layout: content max-width 1120px, 24px side gutters, centered. Must work at phon
 
 ## Pages
 
-- `/` landing page: nav, hero (name, intro, two buttons), featured projects (3 to 6 cards), About with a "Currently learning" row (TypeScript, Go), "Get in touch" block (email, GitHub, LinkedIn, Resume), footer.
+- `/` landing page: nav, hero (name, intro, two buttons), featured projects (3 to 6 cards), About with a "Currently learning" row (TypeScript, C), "Get in touch" block (email, GitHub, LinkedIn, Resume), footer.
 - `/projects` all projects as a compact list grouped by `kind`.
 - `/projects/[slug]` one project: header with demo and source buttons, screenshot, side card (kind, completed, stack), then the write-up sections.
 - `404` page with links home and to `/projects`.

@@ -1,0 +1,63 @@
+---
+import { site } from '../site';
+
+const year = new Date().getFullYear();
+
+// Links that aren't decided yet (null in site.ts) are left out instead of pointing nowhere.
+const links = [
+  { href: site.githubUrl, label: 'GitHub' },
+  { href: site.linkedinUrl, label: 'LinkedIn' },
+  { href: site.resumeUrl, label: 'Resume' },
+].filter((link) => link.href !== null);
+---
+
+<footer>
+  <div class="container inner">
+    <span>© {year} {site.name}</span>
+    {
+      links.length > 0 && (
+        <ul>
+          {links.map((link) => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--border);
+  }
+
+  .inner {
+    min-height: 76px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 24px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 20px;
+  }
+
+  a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+</style>
