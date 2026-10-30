@@ -7,6 +7,8 @@
     // Astro's build output.
     "directory": "./dist",
     // Serve our 404.html for unknown URLs instead of a blank 404.
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // Serve /projects directly; redirect /projects/ to it. Matches how our links are written.
+    "html_handling": "drop-trailing-slash"
   }
 }
