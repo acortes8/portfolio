@@ -1,0 +1,12 @@
+{
+  // Must match the project name in the Cloudflare dashboard, or the build fails.
+  "name": "portfolio",
+  // Locks in Cloudflare's runtime behavior as of this date.
+  "compatibility_date": "2026-10-29",
+  "assets": {
+    // Astro's build output.
+    "directory": "./dist",
+    // Serve our 404.html for unknown URLs instead of a blank 404.
+    "not_found_handling": "404-page"
+  }
+}
