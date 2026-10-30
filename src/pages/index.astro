@@ -28,18 +28,26 @@ const contactLinks = [
       Pi. I'm based in Chicago and currently learning TypeScript and C.
     </p>
     <div class="buttons">
-      <a href="#projects" class="btn btn-primary">View projects</a>
-      <a href={`mailto:${site.email}`} class="btn btn-secondary btn-mono">{site.email}</a>
+      <a href="#projects" class="btn btn-primary">
+        View projects
+      </a>
+      <a href={`mailto:${site.email}`} class="btn btn-secondary btn-mono">
+        {site.email}
+      </a>
     </div>
   </section>
 
   <section id="projects" class="container projects">
     <div class="section-head">
       <h2>Projects</h2>
-      <a href="/projects" class="see-all">See all projects →</a>
+      <a href="/projects" class="see-all">
+        See all projects →
+      </a>
     </div>
     <div class="grid">
-      {featured.map((project) => <ProjectCard project={project} />)}
+      {featured.map((project) => (
+        <ProjectCard project={project} />
+      ))}
     </div>
   </section>
 
@@ -54,13 +62,11 @@ const contactLinks = [
       <div class="learning">
         <span class="eyebrow">Currently learning</span>
         <ul>
-          {
-            learning.map((item) => (
-              <li>
-                <Pill size="md">{item}</Pill>
-              </li>
-            ))
-          }
+          {learning.map((item) => (
+            <li>
+              <Pill size="md">{item}</Pill>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
@@ -73,14 +79,14 @@ const contactLinks = [
         <p>Questions about a project, or want to work together? Email works best.</p>
       </div>
       <div class="buttons">
-        <a href={`mailto:${site.email}`} class="btn btn-primary btn-mono">{site.email}</a>
-        {
-          contactLinks.map((link) => (
-            <a href={link.href} class="btn btn-secondary">
-              {link.label}
-            </a>
-          ))
-        }
+        <a href={`mailto:${site.email}`} class="btn btn-primary btn-mono">
+          {site.email}
+        </a>
+        {contactLinks.map((link) => (
+          <a href={link.href} class="btn btn-secondary">
+            {link.label}
+          </a>
+        ))}
       </div>
     </div>
   </section>
