@@ -1,6 +1,14 @@
 # alejandrocortes.dev: project brief
 
-Personal portfolio site for Alejandro Cortes. Static Astro site (TypeScript, strict), deployed to Cloudflare Pages at `alejandrocortes.dev`. Live demos of other projects run on subdomains elsewhere; this site only links to them.
+Personal portfolio site for Alejandro Cortes. Static Astro site (TypeScript, strict), deployed to Cloudflare Workers (static assets, no Worker script or adapter) at `alejandrocortes.dev`. Live demos of other projects run on subdomains elsewhere; this site only links to them.
+
+## Deployment
+
+- Every push to `main` on GitHub (`acortes8/portfolio`) triggers Workers Builds: `npm run build`, then `npx wrangler deploy`.
+- Config lives in `wrangler.jsonc`. Its `name` must stay `portfolio` to match the dashboard project. Settings there override dashboard toggles on each deploy.
+- Pages are served without trailing slashes (`html_handling: drop-trailing-slash`), so write internal links as `/projects`, not `/projects/`.
+- Node version comes from `.nvmrc`.
+- DNS is on Cloudflare. `www` redirects to the root via a Redirect Rule, and "Always Use HTTPS" is on. The domain's MX and TXT records are for Cloudflare Email Routing (`hello@` forwarding): do not touch them.
 
 ## How we work
 

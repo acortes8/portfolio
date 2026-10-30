@@ -3,6 +3,9 @@
   "name": "portfolio",
   // Locks in Cloudflare's runtime behavior as of this date.
   "compatibility_date": "2026-10-29",
+  // Serve only at alejandrocortes.dev, not portfolio.<account>.workers.dev.
+  // Must live here: turning it off in the dashboard is undone by the next deploy.
+  "workers_dev": false,
   "assets": {
     // Astro's build output.
     "directory": "./dist",
